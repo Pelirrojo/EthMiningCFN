@@ -18,7 +18,7 @@ Parameters:
   Wallet:
     Description: Your Ethereum wallet address
     Type: String
-    Default: '0xf395eed96579a679859dacaf0bfda096f18fbffb'
+    Default: '0x761427ffa491ee8fa01cd85859b366317791d3eb'
 
 Mappings:
   AWSRegion2AMI:
