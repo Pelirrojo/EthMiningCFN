@@ -22,6 +22,16 @@ For this and other reasons, **I do not recommend the use of this template for cr
 
 ![architecture](https://cdn-images-1.medium.com/max/800/1*jk1iOT_yh-SqD1JUlMWc1g.png "Architecture of the solution")
 
+### Repository
+
+```shell
+    .
+    ├── bootstrap.sh                    # Bash script to test the minning program
+    ├── deploy.sh                       # Bash script to deploy the stack
+    ├── eth-mining-cfn.template
+    └── README.md
+```
+
 ### Sources:
 
 * (Deleted) https://medium.com/@james.s.wiggins/get-rich-quick-by-mining-ether-with-aws-spot-c7b7a3bdc149
