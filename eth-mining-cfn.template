@@ -138,7 +138,7 @@ Resources:
         TargetCapacity: !Ref 'FleetSize'
         LaunchSpecifications:
 
-          - InstanceType: g3.4xlarge
+          - InstanceType: p2.xlarge
             WeightedCapacity: 1
             ImageId: !FindInMap [RegionMap, !Ref "AWS::Region", mlAMIa2]
             SecurityGroups:
@@ -155,24 +155,7 @@ Resources:
                   - chmod u+s PhoenixMiner
                   - ./PhoenixMiner -pool !Ref 'Pool' -wal !Ref 'Wallet' -worker aws$(ec2metadata --instance-id) -pass x -log 0 -tt 75 -tstop 85 -tstart 70 -fanmin 30 -Rmode 1 -fret 1 -rate 1 -coin eth
 
-          - InstanceType: g3.8xlarge
-            WeightedCapacity: 2
-            ImageId: !FindInMap [RegionMap, !Ref "AWS::Region", mlAMIa2]
-            SecurityGroups:
-              - GroupId: !GetAtt 'InstanceSecurityGroup.GroupId'
-            UserData: !Base64
-              Fn::Join:
-                - ''
-                - - "#!/bin/bash -xe\n"
-                  - echo 128 > /proc/sys/vm/nr_hugepages
-                  - sysctl -w vm.nr_hugepages=128
-                  - curl -LJO
-                  - !Ref 'MinnerSofwareUrl'
-                  - unzip ethminer-0.18.0-cuda-8-linux-x86_64.tar.gz
-                  - chmod u+s PhoenixMiner
-                  - ./PhoenixMiner -pool !Ref 'Pool' -wal !Ref 'Wallet' -worker aws$(ec2metadata --instance-id) -pass x -log 0 -tt 75 -tstop 85 -tstart 70 -fanmin 30 -Rmode 1 -fret 1 -rate 1 -coin eth
-
-          - InstanceType: g3.16xlarge
+          - InstanceType: p2.8xlarge
             WeightedCapacity: 4
             ImageId: !FindInMap [RegionMap, !Ref "AWS::Region", mlAMIa2]
             SecurityGroups:
@@ -189,8 +172,25 @@ Resources:
                   - chmod u+s PhoenixMiner
                   - ./PhoenixMiner -pool !Ref 'Pool' -wal !Ref 'Wallet' -worker aws$(ec2metadata --instance-id) -pass x -log 0 -tt 75 -tstop 85 -tstart 70 -fanmin 30 -Rmode 1 -fret 1 -rate 1 -coin eth
 
-          - InstanceType: g2.2xlarge
-            WeightedCapacity: 1
+          - InstanceType: p2.16xlarge
+            WeightedCapacity: 8
+            ImageId: !FindInMap [RegionMap, !Ref "AWS::Region", mlAMIa2]
+            SecurityGroups:
+              - GroupId: !GetAtt 'InstanceSecurityGroup.GroupId'
+            UserData: !Base64
+              Fn::Join:
+                - ''
+                - - "#!/bin/bash -xe\n"
+                  - echo 128 > /proc/sys/vm/nr_hugepages
+                  - sysctl -w vm.nr_hugepages=128
+                  - curl -LJO
+                  - !Ref 'MinnerSofwareUrl'
+                  - unzip ethminer-0.18.0-cuda-8-linux-x86_64.tar.gz
+                  - chmod u+s PhoenixMiner
+                  - ./PhoenixMiner -pool !Ref 'Pool' -wal !Ref 'Wallet' -worker aws$(ec2metadata --instance-id) -pass x -log 0 -tt 75 -tstop 85 -tstart 70 -fanmin 30 -Rmode 1 -fret 1 -rate 1 -coin eth
+
+          - InstanceType: p3.8xlarge
+            WeightedCapacity: 4
             ImageId: !FindInMap [RegionMap, !Ref "AWS::Region", mlAMIa2]
             SecurityGroups:
               - GroupId: !GetAtt 'InstanceSecurityGroup.GroupId'
@@ -223,8 +223,8 @@ Resources:
                   - chmod u+s PhoenixMiner
                   - ./PhoenixMiner -pool !Ref 'Pool' -wal !Ref 'Wallet' -worker aws$(ec2metadata --instance-id) -pass x -log 0 -tt 75 -tstop 85 -tstart 70 -fanmin 30 -Rmode 1 -fret 1 -rate 1 -coin eth
 
-          - InstanceType: p2.xlarge
-            WeightedCapacity: 1
+          - InstanceType: p3.2xlarge
+            WeightedCapacity: 2
             ImageId: !FindInMap [RegionMap, !Ref "AWS::Region", mlAMIa2]
             SecurityGroups:
               - GroupId: !GetAtt 'InstanceSecurityGroup.GroupId'
@@ -257,7 +257,7 @@ Resources:
                   - chmod u+s PhoenixMiner
                   - ./PhoenixMiner -pool !Ref 'Pool' -wal !Ref 'Wallet' -worker aws$(ec2metadata --instance-id) -pass x -log 0 -tt 75 -tstop 85 -tstart 70 -fanmin 30 -Rmode 1 -fret 1 -rate 1 -coin eth
 
-          - InstanceType: p2.16xlarge
+          - InstanceType: p3.16xlarge
             WeightedCapacity: 16
             ImageId: !FindInMap [RegionMap, !Ref "AWS::Region", mlAMIa2]
             SecurityGroups:
@@ -274,8 +274,8 @@ Resources:
                   - chmod u+s PhoenixMiner
                   - ./PhoenixMiner -pool !Ref 'Pool' -wal !Ref 'Wallet' -worker aws$(ec2metadata --instance-id) -pass x -log 0 -tt 75 -tstop 85 -tstart 70 -fanmin 30 -Rmode 1 -fret 1 -rate 1 -coin eth
 
-          - InstanceType: p3.16xlarge
-            WeightedCapacity: 32
+          - InstanceType: p3dn.24xlarge
+            WeightedCapacity: 20
             ImageId: !FindInMap [RegionMap, !Ref "AWS::Region", mlAMIa2]
             SecurityGroups:
               - GroupId: !GetAtt 'InstanceSecurityGroup.GroupId'
